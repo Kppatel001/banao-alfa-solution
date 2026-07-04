@@ -1,0 +1,2636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alfa Solution - ChanloPay: Smart Payments. Faster Business.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2j+FWXAPQfCgJL+wfghOQ+g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary: #0057FF;
+            --secondary: #00C2FF;
+            --accent: #00D084;
+            --background-light: #FFFFFF;
+            --background-dark-light: #F8FAFC; /* Light gray */
+            --text-dark: #0F172A;
+            --text-light: #4A5568;
+            --border-light: rgba(0, 0, 0, 0.1);
+            --shadow-light: rgba(15, 23, 42, 0.05);
+
+            /* Dynamic based on theme */
+            --background-color: var(--background-light);
+            --card-background: var(--background-light);
+            --text-color: var(--text-dark);
+            --heading-color: var(--text-dark);
+            --subheading-color: var(--text-light);
+            --border-color: var(--border-light);
+            --input-background: var(--background-dark-light);
+            --input-border: #E2E8F0;
+            --shadow-color: var(--shadow-light);
+        }
+
+        [data-theme="dark"] {
+            --background-light: #0F172A; /* Dark navy */
+            --background-dark-light: #1A202C; /* Slightly lighter dark */
+            --text-dark: #E2E8F0; /* Light text for dark mode */
+            --text-light: #A0AEC0; /* Slightly darker light for body */
+            --border-light: rgba(255, 255, 255, 0.1);
+            --shadow-light: rgba(0, 0, 0, 0.3);
+
+            --background-color: var(--background-light);
+            --card-background: var(--background-dark-light);
+            --text-color: var(--text-dark);
+            --heading-color: var(--text-dark);
+            --subheading-color: var(--text-light);
+            --border-color: var(--border-light);
+            --input-background: #2D3748;
+            --input-border: #4A5568;
+            --shadow-color: var(--shadow-light);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--heading-color);
+            font-weight: 700;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.8rem; }
+        h4 { font-size: 1.4rem; }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        button {
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600; /* Semi-Bold */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-heading h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .section-heading p {
+            font-size: 1.15rem;
+            color: var(--subheading-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            box-shadow: 0 8px 25px -8px var(--primary);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px -10px var(--primary);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 0.9rem 1.9rem;
+        }
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 0.95rem 1.95rem;
+        }
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: var(--card-background);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow-color);
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        [data-theme="dark"] .glass-card {
+             background: rgba(0, 0, 0, 0.2);
+             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+
+        /* Header */
+        header {
+            background-color: var(--background-color);
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            width: 30px;
+            height: 20px;
+            justify-content: space-between;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover {
+            color: var(--primary);
+        }
+
+        /* Mobile Nav */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 70px; /* Height of header */
+            left: 0;
+            width: 100%;
+            height: calc(100% - 70px);
+            background-color: var(--background-color);
+            flex-direction: column;
+            padding: 2rem;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 999;
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+
+        .mobile-nav.open {
+            transform: translateX(0);
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-nav a {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .mobile-nav .header-actions {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .mobile-nav .btn {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        #hero {
+            background-color: var(--background-color);
+            padding: 8rem 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #hero .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        .hero-content h1 span {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--subheading-color);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap; /* Allow buttons to wrap */
+        }
+
+        .hero-illustration {
+            width: 100%;
+            max-width: 900px;
+            height: 450px; /* Placeholder height */
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border-radius: 1.5rem;
+            position: relative;
+            margin-top: 3rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(0, 87, 255, 0.3);
+        }
+        .hero-illustration::before, .hero-illustration::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .hero-illustration::before {
+            width: 70%;
+            height: 80%;
+            left: 5%;
+            top: 10%;
+            transform: rotate(-5deg);
+        }
+        .hero-illustration::after {
+            width: 50%;
+            height: 60%;
+            right: 5%;
+            bottom: 10%;
+            transform: rotate(10deg);
+        }
+        .hero-illustration .inner-content {
+            z-index: 1;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            padding: 2rem;
+            max-width: 80%;
+        }
+        .hero-illustration .inner-content span {
+            display: block;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+        }
+
+        /* Statistics Section */
+        #stats {
+            background-color: var(--background-dark-light);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        #stats .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .stat-item p {
+            font-size: 1.1rem;
+            color: var(--subheading-color);
+        }
+
+        /* Generic Feature Grid for various sections */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .feature-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            background-color: rgba(0, 87, 255, 0.1);
+            padding: 1rem;
+            border-radius: 50%;
+            width: 6rem;
+            height: 6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .feature-card h4 {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+        }
+        .feature-card p {
+            color: var(--subheading-color);
+            font-size: 0.95rem;
+        }
+
+        /* Digital Payments Specific */
+        #digital-payments .feature-card i {
+            color: var(--secondary);
+            background-color: rgba(0, 194, 255, 0.1);
+        }
+
+        /* Merchant Dashboard (Product Showcase) */
+        #merchant-dashboard {
+            background-color: var(--background-dark-light);
+        }
+        #merchant-dashboard .container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            align-items: center;
+        }
+        .dashboard-preview {
+            width: 100%;
+            background-color: var(--card-background);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            border: 1px solid var(--border-color);
+        }
+        .dashboard-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .dashboard-tab {
+            background-color: var(--input-background);
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--subheading-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border: 1px solid var(--input-border);
+        }
+        .dashboard-tab.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .dashboard-tab:hover:not(.active) {
+            background-color: rgba(0, 87, 255, 0.1);
+            color: var(--primary);
+            border-color: rgba(0, 87, 255, 0.3);
+        }
+        .dashboard-image-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            background-color: var(--input-background);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid var(--input-border);
+        }
+        .dashboard-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+        .dashboard-image.active {
+            display: block;
+            opacity: 1;
+        }
+        .dashboard-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        #merchant-dashboard .section-heading {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* General Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .info-card {
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: left;
+            box-shadow: 0 5px 20px var(--shadow-color);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .info-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .info-card ul li {
+            font-size: 0.95rem;
+            color: var(--subheading-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .info-card ul li i {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        /* Specific styles for Customer Management, Subscriptions, Invoices, etc. */
+        #customer-management .info-card h4,
+        #subscription-system .info-card h4,
+        #invoice-management .info-card h4,
+        #qr-payment-system .info-card h4,
+        #payout-system .info-card h4,
+        #financial-analytics .info-card h4,
+        #notification-center .info-card h4,
+        #business-automation .info-card h4,
+        #ai-features .info-card h4,
+        #mobile-app-features .info-card h4,
+        #admin-panel .info-card h4 {
+            color: var(--primary); /* Consistent primary color for these specific sections */
+        }
+        #customer-management .info-card ul li i,
+        #subscription-system .info-card ul li i,
+        #invoice-management .info-card ul li i,
+        #qr-payment-system .info-card ul li i,
+        #payout-system .info-card ul li i,
+        #financial-analytics .info-card ul li i,
+        #notification-center .info-card ul li i,
+        #business-automation .info-card ul li i,
+        #ai-features .info-card ul li i,
+        #mobile-app-features .info-card ul li i,
+        #admin-panel .info-card ul li i {
+            color: var(--accent); /* Consistent accent color for checkmarks */
+        }
+
+
+        /* Industry Solutions */
+        #industry-solutions .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .solution-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--background-dark-light);
+            border: 1px solid var(--border-color);
+            box-shadow: none;
+        }
+        .solution-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .solution-card h4 {
+            font-size: 1.25rem;
+        }
+
+
+        /* API Developers Section */
+        #api-platform {
+            background-color: var(--background-color);
+        }
+        #api-platform .container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            align-items: center;
+        }
+        #api-platform .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            width: 100%;
+        }
+        .api-feature {
+            background-color: var(--card-background);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .api-feature:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px var(--shadow-color);
+        }
+        .api-feature i {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .api-feature h5 {
+            font-size: 1.1rem;
+        }
+        #api-platform .actions {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Security Section */
+        #security-center {
+            background-color: var(--background-dark-light);
+        }
+        #security-center .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .security-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .security-item i {
+            font-size: 2rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .security-item div h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.3rem;
+        }
+        .security-item div p {
+            font-size: 0.95rem;
+            color: var(--subheading-color);
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+            text-align: center;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .testimonial-card {
+            text-align: left;
+            padding: 2.5rem;
+        }
+        .testimonial-card .stars {
+            color: gold;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--subheading-color);
+            font-size: 1rem;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+        .testimonial-author-info h5 {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+        .testimonial-author-info span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Pricing Section */
+        #pricing {
+            background-color: var(--background-dark-light);
+        }
+        .pricing-toggle {
+            display: inline-flex;
+            background-color: var(--input-background);
+            border-radius: 0.75rem;
+            padding: 0.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--input-border);
+        }
+        .pricing-toggle button {
+            background-color: transparent;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            color: var(--subheading-color);
+            transition: all 0.3s ease;
+        }
+        .pricing-toggle button.active {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 87, 255, 0.2);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .pricing-card {
+            padding: 3rem;
+            text-align: center;
+        }
+        .pricing-card.recommended {
+            border: 2px solid var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 87, 255, 0.2);
+        }
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .pricing-card .price {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .pricing-card .price small {
+            font-size: 1.2rem;
+            color: var(--subheading-color);
+        }
+        .pricing-card .features-list {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        .pricing-card .features-list li {
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .pricing-card .features-list li i {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+        .pricing-card .btn {
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        /* Integration Section */
+        #integrations .integrations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .integration-item {
+            text-align: center;
+        }
+        .integration-item i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+        .integration-item p {
+            font-weight: 500;
+        }
+
+        /* About Section */
+        #about-alfa {
+            background-color: var(--background-dark-light);
+        }
+        #about-alfa .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        #about-alfa .content h2 {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        #about-alfa .content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--subheading-color);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        #about-alfa .mission-vision-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .mvv-item {
+            padding: 2rem;
+            text-align: center;
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            box-shadow: 0 5px 20px var(--shadow-color);
+        }
+        .mvv-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+        .mvv-item p {
+            font-size: 0.95rem;
+            color: var(--subheading-color);
+        }
+
+        /* Blog Section */
+        #blog .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .blog-post-card {
+            text-align: left;
+        }
+        .blog-post-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .blog-post-card span {
+            display: block;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .blog-post-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+        .blog-post-card p {
+            font-size: 0.95rem;
+            color: var(--subheading-color);
+        }
+
+        /* FAQ Section */
+        #faq .faq-accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+        .faq-question {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: left;
+            background: none;
+            border: none;
+            color: var(--heading-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        .faq-question:hover {
+            background-color: var(--input-background);
+        }
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--subheading-color);
+            font-size: 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+        }
+        .faq-answer.open {
+            max-height: 200px; /* Adjust as needed */
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--background-color);
+        }
+        #contact .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        #contact .contact-form-container {
+            padding: 2.5rem;
+            background-color: var(--card-background);
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px var(--shadow-color);
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--heading-color);
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--input-border);
+            border-radius: 0.5rem;
+            background-color: var(--input-background);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 87, 255, 0.1);
+        }
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .contact-form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        #contact .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .contact-info-item i {
+            font-size: 2rem;
+            color: var(--primary);
+            background-color: rgba(0, 87, 255, 0.1);
+            padding: 0.8rem;
+            border-radius: 50%;
+            width: 3.8rem;
+            height: 3.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .contact-info-item h4 {
+            font-size: 1.3rem;
+        }
+        .contact-info-item p, .contact-info-item a {
+            font-size: 1.05rem;
+            color: var(--subheading-color);
+            word-break: break-all;
+        }
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .social-icons a {
+            font-size: 1.8rem;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--background-dark-light);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            color: var(--subheading-color);
+        }
+        footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjusted for more columns */
+            gap: 2rem;
+        }
+        .footer-col h5 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--heading-color);
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+        .footer-col ul li a {
+            color: var(--subheading-color);
+            transition: color 0.3s ease;
+        }
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+        .footer-bottom {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+        }
+        .footer-bottom p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.2rem; }
+            h3 { font-size: 1.6rem; }
+            .hero-content h1 { font-size: 3.5rem; }
+            .hero-content p { font-size: 1.2rem; }
+            .pricing-card .price { font-size: 3rem; }
+
+            .nav-menu, .header-actions .btn:not(.btn-primary):not(#watch-tour-btn) { /* Hide secondary buttons except watch tour */
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .header-actions .btn-primary {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            .theme-toggle {
+                margin-left: 0.5rem;
+            }
+            #contact .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            #contact .contact-form-container {
+                order: 2;
+            }
+            #contact .contact-details {
+                order: 1;
+                text-align: center;
+            }
+            .contact-info-item {
+                justify-content: center;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+            .hero-actions .btn {
+                width: auto; /* Revert for hero buttons to avoid stacking unnecessarily wide */
+                min-width: 160px;
+            }
+            .hero-actions {
+                gap: 1rem;
+            }
+            .footer-col {
+                grid-column: span 1; /* Adjust to 2 columns on medium screens */
+            }
+            footer .container {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-content p { font-size: 1rem; }
+            .hero-actions { flex-direction: column; gap: 1rem; }
+            .btn { width: 100%; }
+            .hero-illustration { height: 300px; }
+            .section-heading h2 { font-size: 2rem; }
+            .section-heading p { font-size: 1rem; }
+            section { padding: 4rem 0; }
+            .pricing-card { padding: 2rem; }
+            .pricing-card .price { font-size: 2.8rem; }
+            .dashboard-image-container { height: 300px; }
+            .footer-col {
+                grid-column: span 2; /* Make columns stack for smaller screens */
+            }
+            footer .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { font-size: 0.95rem; }
+            .logo { font-size: 1.5rem; }
+            .btn { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
+            .hero-illustration { height: 250px; }
+            .dashboard-image-container { height: 250px; }
+            .dashboard-tab { padding: 0.6rem 1rem; font-size: 0.9rem; }
+            .pricing-toggle { padding: 0.3rem; }
+            .pricing-toggle button { padding: 0.6rem 1rem; font-size: 0.9rem; }
+            .pricing-card { padding: 1.5rem; }
+            .contact-form-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Alfa Solution.<span>ChanloPay</span></a>
+            <nav class="nav-menu">
+                <a href="#digital-payments">Payments</a>
+                <a href="#merchant-dashboard">Dashboard</a>
+                <a href="#industry-solutions">Solutions</a>
+                <a href="#api-platform">API</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-sun" id="theme-icon"></i>
+                </button>
+                <a href="#" class="btn btn-secondary" id="watch-tour-btn">Watch Tour</a>
+                <a href="#" class="btn btn-primary">Get Started</a>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="#digital-payments">Payments</a></li>
+            <li><a href="#merchant-dashboard">Dashboard</a></li>
+            <li><a href="#industry-solutions">Solutions</a></li>
+            <li><a href="#api-platform">API</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="header-actions">
+            <a href="#" class="btn btn-secondary">Watch Product Tour</a>
+            <a href="#" class="btn btn-primary">Start Free Trial</a>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Accept Payments Smarter with <span>ChanloPay</span></h1>
+                    <p>Manage payments, settlements, subscriptions, invoices, customers, analytics, and business operations from one powerful platform.</p>
+                    <div class="hero-actions">
+                        <a href="#" class="btn btn-primary">Start Free Trial</a>
+                        <a href="#" class="btn btn-secondary">Book Demo</a>
+                        <a href="#" class="btn btn-outline" id="watch-product-tour-btn"><i class="fas fa-play-circle"></i> Watch Product Tour</a>
+                        <a href="#digital-payments" class="btn btn-outline">Explore Features</a>
+                    </div>
+                </div>
+                <div class="hero-illustration">
+                    <div class="inner-content">
+                        Your All-in-One Payment & Business Platform.
+                        <span>Intuitive Merchant Dashboard, Mobile App, QR & UPI Payments, Live Analytics, and Secure Payment Flow.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section id="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>100K+</h3>
+                        <p>Transactions Daily</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>10K+</h3>
+                        <p>Businesses Served</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>99.99%</h3>
+                        <p>Platform Uptime</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24×7</h3>
+                        <p>Support</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Digital Payments Section -->
+        <section id="digital-payments">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Comprehensive Digital Payment Solutions</h2>
+                    <p>Accept every type of payment, manage transactions efficiently, and automate reconciliation across all channels.</p>
+                </div>
+                <div class="feature-grid">
+                    <div class="card feature-card">
+                        <i class="fas fa-money-check-alt"></i>
+                        <h4>UPI Payments</h4>
+                        <p>Direct payments from any UPI app. Instant & secure.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-qrcode"></i>
+                        <h4>Dynamic QR Codes</h4>
+                        <p>Generate unique QR codes for each transaction.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-barcode"></i>
+                        <h4>Static QR Codes</h4>
+                        <p>Fixed QR codes for easy, repeated collections.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-link"></i>
+                        <h4>Payment Links</h4>
+                        <p>Share links via SMS, email, or chat for quick payments.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-credit-card"></i>
+                        <h4>Card Payments</h4>
+                        <p>Accept all major credit & debit cards effortlessly.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-university"></i>
+                        <h4>Net Banking</h4>
+                        <p>Secure online bank transfers from all major banks.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-wallet"></i>
+                        <h4>Wallet Payments</h4>
+                        <p>Integrate popular digital wallets for convenience.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-globe"></i>
+                        <h4>International Payments</h4>
+                        <p>Expand globally by accepting payments from anywhere.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-redo-alt"></i>
+                        <h4>Recurring Payments & Subscriptions</h4>
+                        <p>Automate billing for subscriptions and EMI options.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-undo"></i>
+                        <h4>Refund Processing</h4>
+                        <p>Manage full or partial refunds directly from the dashboard.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h4>Auto Reconciliation</h4>
+                        <p>Match payments to orders automatically, reducing manual effort.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Payment Confirmation</h4>
+                        <p>Instant notifications for successful transactions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Merchant Dashboard Section -->
+        <section id="merchant-dashboard">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Your Command Center: The Merchant Dashboard</h2>
+                    <p>Gain complete control over your business with real-time insights, detailed reports, and intuitive management tools.</p>
+                </div>
+                <div class="dashboard-preview">
+                    <div class="dashboard-tabs" id="dashboard-tabs">
+                        <button class="dashboard-tab active" data-tab="revenue">Revenue Analytics</button>
+                        <button class="dashboard-tab" data-tab="transactions">Live Transactions</button>
+                        <button class="dashboard-tab" data-tab="customers">Customer Insights</button>
+                        <button class="dashboard-tab" data-tab="settlements">Settlement Reports</button>
+                        <button class="dashboard-tab" data-tab="subscriptions">Subscription Analytics</button>
+                    </div>
+                    <div class="dashboard-image-container">
+                        <img src="https://via.placeholder.com/1200x600/0057FF/FFFFFF?text=ChanloPay+Dashboard+-+Revenue+Analytics" alt="ChanloPay Dashboard Revenue Analytics" class="dashboard-image active" data-tab-content="revenue">
+                        <img src="https://via.placeholder.com/1200x600/00C2FF/FFFFFF?text=ChanloPay+Dashboard+-+Live+Transactions" alt="ChanloPay Dashboard Live Transactions" class="dashboard-image" data-tab-content="transactions">
+                        <img src="https://via.placeholder.com/1200x600/00D084/FFFFFF?text=ChanloPay+Dashboard+-+Customer+Insights" alt="ChanloPay Dashboard Customer Insights" class="dashboard-image" data-tab-content="customers">
+                        <img src="https://via.placeholder.com/1200x600/0F172A/FFFFFF?text=ChanloPay+Dashboard+-+Settlement+Reports" alt="ChanloPay Dashboard Settlement Reports" class="dashboard-image" data-tab-content="settlements">
+                        <img src="https://via.placeholder.com/1200x600/4A5568/FFFFFF?text=ChanloPay+Dashboard+-+Subscription+Analytics" alt="ChanloPay Dashboard Subscription Analytics" class="dashboard-image" data-tab-content="subscriptions">
+                    </div>
+                    <div class="dashboard-actions">
+                        <button class="btn btn-outline" id="dashboard-dark-mode-toggle">
+                            <i class="fas fa-moon"></i> Toggle Dashboard Theme
+                        </button>
+                        <a href="#" class="btn btn-secondary">Explore Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Management Section -->
+        <section id="customer-management">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Intelligent Customer Management</h2>
+                    <p>Build deeper relationships with detailed customer profiles, activity tracking, and powerful CRM features.</p>
+                </div>
+                <div class="info-grid">
+                    <div class="card info-card">
+                        <h4>Customer Database</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Comprehensive Customer Profiles</li>
+                            <li><i class="fas fa-check-circle"></i> Purchase & Subscription History</li>
+                            <li><i class="fas fa-check-circle"></i> Saved Payment Methods</li>
+                            <li><i class="fas fa-check-circle"></i> Loyalty Points Tracking</li>
+                        </ul>
+                    </div>
+                    <div class="card info-card">
+                        <h4>CRM Features</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Customer Activity Timeline</li>
+                            <li><i class="fas fa-check-circle"></i> Support & Communication History</li>
+                            <li><i class="fas fa-check-circle"></i> Custom Tags & Segmentation</li>
+                            <li><i class="fas fa-check-circle"></i> Customer Notes & Risk Profile</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subscription System Section -->
+        <section id="subscription-system">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Powerful Subscription & Recurring Billing</h2>
+                    <p>Automate your recurring revenue streams with flexible plans, trial periods, and smart retention tools.</p>
+                </div>
+                <div class="info-grid">
+                    <div class="card info-card">
+                        <h4>Flexible Plan Management</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Monthly & Yearly Billing</li>
+                            <li><i class="fas fa-check-circle"></i> Auto Renewals & Trial Periods</li>
+                            <li><i class="fas fa-check-circle"></i> Coupon Codes & Discount Campaigns</li>
+                            <li><i class="fas fa-check-circle"></i> Plan Upgrades & Downgrades</li>
+                        </ul>
+                    </div>
+                    <div class="card info-card">
+                        <h4>Automation & Analytics</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Invoice Automation</li>
+                            <li><i class="fas fa-check-circle"></i> Payment Retry Logic</li>
+                            <li><i class="fas fa-check-circle"></i> Cancellation Workflow</li>
+                            <li><i class="fas fa-check-circle"></i> Retention Analytics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Invoice Management Section -->
+        <section id="invoice-management">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Effortless Invoice & Billing Management</h2>
+                    <p>Create, send, and track professional invoices with custom branding, GST support, and automated reminders.</p>
+                </div>
+                <div class="info-grid">
+                    <div class="card info-card">
+                        <h4>Invoice Generation</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> GST & Custom Branded Invoices</li>
+                            <li><i class="fas fa-check-circle"></i> PDF Download & Email Invoice</li>
+                            <li><i class="fas fa-check-circle"></i> Bulk & Recurring Invoice Generation</li>
+                            <li><i class="fas fa-check-circle"></i> Customizable Invoice Templates</li>
+                        </ul>
+                    </div>
+                    <div class="card info-card">
+                        <h4>Tracking & Automation</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Real-time Invoice Status (Paid, Pending, Overdue)</li>
+                            <li><i class="fas fa-check-circle"></i> Automated Payment Reminders</li>
+                            <li><i class="fas fa-check-circle"></i> Integrated Tax Calculations</li>
+                            <li><i class="fas fa-check-circle"></i> Invoice Tracking & Reporting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QR Payment System Section -->
+        <section id="qr-payment-system">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Advanced QR Payment System</h2>
+                    <p>Generate dynamic and static QR codes for every business need, with built-in analytics and tracking.</p>
+                </div>
+                <div class="feature-grid">
+                    <div class="card feature-card">
+                        <i class="fas fa-store"></i>
+                        <h4>Store QR Codes</h4>
+                        <p>Generic QR for your physical store.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-cash-register"></i>
+                        <h4>Table QR Codes</h4>
+                        <p>Unique QRs for restaurant tables or counters.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-tag"></i>
+                        <h4>Product QR Codes</h4>
+                        <p>Specific QRs for individual products or services.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <h4>Donation QR Codes</h4>
+                        <p>Easy collection for NGOs and causes.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-qrcode"></i>
+                        <h4>Dynamic QR Codes</h4>
+                        <p>QR codes that change per transaction amount.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-chart-bar"></i>
+                        <h4>QR Scan Analytics</h4>
+                        <p>Track scans, locations, and conversion rates.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <i class="fas fa-print"></i>
+                        <h4>Print & Branding Support</h4>
+                        <p>Download and print branded QR codes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payout System Section -->
+        <section id="payout-system">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Seamless Payouts & Disbursements</h2>
+                    <p>Automate vendor, employee, and bulk payouts with speed, security, and integrated tracking.</p>
+                </div>
+                <div class="info-grid">
+                    <div class="card info-card">
+                        <h4>Diverse Payout Options</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Bank Transfers (IMPS, NEFT, RTGS)</li>
+                            <li><i class="fas fa-check-circle"></i> UPI Transfers</li>
+                            <li><i class="fas fa-check-circle"></i> Vendor Payments</li>
+                            <li><i class="fas fa-check-circle"></i> Employee Salary Distribution</li>
+                        </ul>
+                    </div>
+                    <div class="card info-card">
+                        <h4>Automation & Management</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Bulk Payouts (Excel Upload)</li>
+                            <li><i class="fas fa-check-circle"></i> Scheduled Payments</li>
+                            <li><i class="fas fa-check-circle"></i> Approval Workflow</li>
+                            <li><i class="fas fa-check-circle"></i> Payout Status & Failed Transfer Recovery</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Financial Analytics Section -->
+        <section id="financial-analytics">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Deep Financial Insights & Reporting</h2>
+                    <p>Understand your business's financial health with real-time analytics, intelligent forecasting, and custom reports.</p>
+                </div>
+                <div class="info-grid">
+                    <div class="card info-card">
+                        <h4>Key Financial Metrics</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Revenue & Cash Flow Monitoring</li>
+                            <li><i class="fas fa-check-circle"></i> Profit & Expense Tracking</li>
+                            <li><i class="fas fa-check-circle"></i> Settlement Analytics</li>
+                            <li><i class="fas fa-check-circle"></i> Conversion Rate & AOV</li>
+                        </ul>
+                    </div>
+                    <div class="card info-card">
+                        <h4>Advanced Reporting</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> AI-Powered Forecasting & BI</li>
+                            <li><i class="fas fa-check-circle"></i> Trend Analysis & Performance Reports</li>
+                            <li><i class="fas fa-check-circle"></i> Geographic & Tax Reports</li>
+                            <li><i class="fas fa-check-circle"></i> Custom Reports with Export Options (PDF, Excel, CSV)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- API Platform Section -->
+        <section id="api-platform">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Built for Developers: Powerful API Platform</h2>
+                    <p>Integrate ChanloPay with ease using our robust APIs, comprehensive documentation, and developer-friendly tools.</p>
+                </div>
+                <div class="api-features feature-grid">
+                    <div class="api-feature card">
+                        <i class="fas fa-terminal"></i>
+                        <h5>REST APIs</h5>
+                        <p>Modern and well-documented RESTful APIs.</p>
+                    </div>
+                    <div class="api-feature card">
+                        <i class="fas fa-paper-plane"></i>
+                        <h5>Real-time Webhooks</h5>
+                        <p>Instant notifications for critical events.</p>
+                    </div>
+                    <div class="api-feature card">
+                        <i class="fas fa-code-branch"></i>
+                        <h5>SDK Support</h5>
+                        <p>Libraries for popular languages to speed up integration.</p>
+                    </div>
+                    <div class="api-feature card">
+                        <i class="fas fa-flask"></i>
+                        <h5>Sandbox Environment</h5>
+                        <p>Dedicated testing environment for seamless development.</p>
+                    </div>
+                    <div class="api-feature card">
+                        <i class="fas fa-book"></i>
+                        <h5>Comprehensive Documentation</h5>
+                        <p>Detailed guides, examples, and reference material.</p>
+                    </div>
+                    <div class="api-feature card">
+                        <i class="fas fa-vial"></i>
+                        <h5>Testing & Debugging Tools</h5>
+                        <p>Utilities to ensure smooth API interactions.</p>
+                    </div>
+                    <div class="api-feature card">
+                        <i class="fas fa-chart-area"></i>
+                        <h5>API Monitoring & Metrics</h5>
+                        <p>Track usage, performance, and error rates.</p>
+                    </div>
+                    <div class="api-feature card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h5>Secure OAuth Authentication</h5>
+                        <p>Robust authentication mechanisms for protected access.</p>
+                    </div>
+                </div>
+                <div class="actions">
+                    <a href="#" class="btn btn-primary">Explore API</a>
+                    <a href="#" class="btn btn-secondary">View Documentation</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Center Section -->
+        <section id="security-center">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Enterprise-Grade Security & Compliance</h2>
+                    <p>Your data and transactions are protected by industry-leading security measures, ensuring peace of mind for you and your customers.</p>
+                </div>
+                <div class="security-grid">
+                    <div class="security-item card">
+                        <i class="fas fa-lock"></i>
+                        <div>
+                            <h4>End-to-End Encryption</h4>
+                            <p>All data is encrypted in transit and at rest with robust protocols.</p>
+                        </div>
+                    </div>
+                    <div class="security-item card">
+                        <i class="fas fa-user-shield"></i>
+                        <div>
+                            <h4>Secure Authentication</h4>
+                            <p>Multi-factor authentication (MFA), email, OTP, and Google login options.</p>
+                        </div>
+                    </div>
+                    <div class="security-item card">
+                        <i class="fas fa-user-tag"></i>
+                        <div>
+                            <h4>Role-Based Permissions</h4>
+                            <p>Granular access control for team members with customizable roles.</p>
+                        </div>
+                    </div>
+                    <div class="security-item card">
+                        <i class="fas fa-clipboard-list"></i>
+                        <div>
+                            <h4>Comprehensive Audit Logs</h4>
+                            <p>Detailed logs for all activities, ensuring transparency and accountability.</p>
+                        </div>
+                    </div>
+                    <div class="security-item card">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>Compliance Ready</h4>
+                            <p>Adherence to global and local regulatory standards (PCI DSS, GDPR, etc.).</p>
+                        </div>
+                    </div>
+                    <div class="security-item card">
+                        <i class="fas fa-database"></i>
+                        <div>
+                            <h4>Advanced Data Protection</h4>
+                            <p>Strict policies and technologies to safeguard your sensitive data.</p>
+                        </div>
+                    </div>
+                    <div class="security-item card">
+                        <i class="fas fa-eye"></i>
+                        <div>
+                            <h4>24/7 Threat Monitoring</h4>
+                            <p>Constant vigilance against potential threats and suspicious activities.</p>
+                        </div>
+                    </div>
+                    <div class="security-item card">
+                        <i class="fas fa-layer-group"></i>
+                        <div>
+                            <h4>Multi-layer Security</h4>
+                            <p>Defense in depth protecting all aspects of the platform infrastructure.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notification Center Section -->
+        <section id="notification-center">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Real-Time Notifications & Alerts</h2>
+                    <p>Stay informed with instant updates across all your important business events, customized to your preferences.</p>
+                </div>
+                <div class="info-grid">
+                    <div class="card info-card">
+                        <h4>Diverse Channels</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Email Notifications</li>
+                            <li><i class="fas fa-check-circle"></i> SMS Notifications</li>
+                            <li><i class="fas fa-check-circle"></i> In-App Push Notifications</li>
+                            <li><i class="fas fa-check-circle"></i> WhatsApp Notifications</li>
+                        </ul>
+                    </div>
+                    <div class="card info-card">
+                        <h4>Customizable Alerts</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Payment & Settlement Alerts</li>
+                            <li><i class="fas fa-check-circle"></i> Invoice & Subscription Alerts</li>
+                            <li><i class="fas fa-check-circle"></i> Fraud & System Update Alerts</li>
+                            <li><i class="fas fa-check-circle"></i> Customizable Templates & Rules</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Automation Section -->
+        <section id="business-automation">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Automate Your Business Workflows with No Code</h2>
+                    <p>Design and implement custom automation rules to streamline operations, reduce manual effort, and boost efficiency.</p>
+                </div>
+                <div class="info-grid">
+                    <div class="card info-card">
+                        <h4>Workflow Builder</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Intuitive No-Code Interface</li>
+                            <li><i class="fas fa-check-circle"></i> Payment & Invoice Automation</li>
+                            <li><i class="fas fa-check-circle"></i> CRM & Reminder Automation</li>
+                            <li><i class="fas fa-check-circle"></i> Approval Processes</li>
+                        </ul>
+                    </div>
+                    <div class="card info-card">
+                        <h4>Smart Rule Engine</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Define Triggers, Conditions & Actions</li>
+                            <li><i class="fas fa-check-circle"></i> Collection & Marketing Automation</li>
+                            <li><i class="fas fa-check-circle"></i> Task Automation & AI Suggestions</li>
+                            <li><i class="fas fa-check-circle"></i> Automated Reports & Alerts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industry Solutions Section -->
+        <section id="industry-solutions">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Solutions Tailored for Every Business Type</h2>
+                    <p>Whether you're a small startup or a large enterprise, ChanloPay has the perfect payment and operations solution for you.</p>
+                </div>
+                <div class="solutions-grid">
+                    <div class="card solution-card">
+                        <i class="fas fa-store"></i>
+                        <h4>Retail Businesses</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-utensils"></i>
+                        <h4>Restaurants & Cafes</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h4>Educational Institutes</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-pencil-ruler"></i>
+                        <h4>Freelancers & Creators</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-rocket"></i>
+                        <h4>Startups</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-building"></i>
+                        <h4>Enterprises</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-laptop-code"></i>
+                        <h4>E-commerce Stores</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-heartbeat"></i>
+                        <h4>Healthcare Clinics</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-hands-helping"></i>
+                        <h4>NGOs & Non-Profits</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-users"></i>
+                        <h4>Membership Platforms</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h4>Coaching Institutes</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-globe"></i>
+                        <h4>Digital Service Providers</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-home"></i>
+                        <h4>Real Estate Companies</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-plane"></i>
+                        <h4>Travel Businesses</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-hotel"></i>
+                        <h4>Hotels & Hospitality</h4>
+                    </div>
+                    <div class="card solution-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h4>Event Organizers</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Features Section -->
+        <section id="ai-features">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>AI-Powered Insights for Smarter Business Decisions</h2>
+                    <p>Leverage artificial intelligence to predict trends, prevent fraud, segment customers, and gain actionable intelligence.</p>
+                </div>
+                <div class="info-grid">
+                    <div class="card info-card">
+                        <h4>Smart Analytics & Forecasting</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> AI Revenue Prediction</li>
+                            <li><i class="fas fa-check-circle"></i> Cash Flow & Expense Analysis</li>
+                            <li><i class="fas fa-check-circle"></i> Smart Business Suggestions</li>
+                            <li><i class="fas fa-check-circle"></i> Automated & Custom Reports</li>
+                        </ul>
+                    </div>
+                    <div class="card info-card">
+                        <h4>Intelligent Operations</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> AI Fraud Detection & Risk Analysis</li>
+                            <li><i class="fas fa-check-circle"></i> Dynamic Customer Segmentation</li>
+                            <li><i class="fas fa-check-circle"></i> Personalized Payment Recommendations</li>
+                            <li><i class="fas fa-check-circle"></i> AI Chat & Dashboard Assistant (NLP, Voice)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mobile App Features Section -->
+        <section id="mobile-app-features">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>ChanloPay Mobile App: Manage On The Go</h2>
+                    <p>Access your business data, accept payments, and stay updated from anywhere with our intuitive mobile application.</p>
+                </div>
+                <div class="info-grid">
+                    <div class="card info-card">
+                        <h4>Seamless Access & Operations</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Android & iOS Support</li>
+                            <li><i class="fas fa-check-circle"></i> Biometric Login (Face/Fingerprint Unlock)</li>
+                            <li><i class="fas fa-check-circle"></i> UPI QR Code Scanner</li>
+                            <li><i class="fas fa-check-circle"></i> Instant Invoice Creation & Sharing</li>
+                        </ul>
+                    </div>
+                    <div class="card info-card">
+                        <h4>Real-time Management</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Live Transaction & Settlement Tracking</li>
+                            <li><i class="fas fa-check-circle"></i> Customer Management & Insights</li>
+                            <li><i class="fas fa-check-circle"></i> Real-Time Notifications & Alerts</li>
+                            <li><i class="fas fa-check-circle"></i> Dark Mode, Offline Support & Widgets</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Panel Section -->
+        <section id="admin-panel">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Robust Admin Panel for Complete Platform Control</h2>
+                    <p>Powerful administrative tools for managing merchants, monitoring transactions, resolving disputes, and ensuring platform compliance.</p>
+                </div>
+                <div class="info-grid">
+                    <div class="card info-card">
+                        <h4>Merchant & User Management</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Merchant Onboarding & Verification</li>
+                            <li><i class="fas fa-check-circle"></i> KYC Management</li>
+                            <li><i class="fas fa-check-circle"></i> User & Role Management</li>
+                            <li><i class="fas fa-check-circle"></i> Subscription Management</li>
+                        </ul>
+                    </div>
+                    <div class="card info-card">
+                        <h4>Platform Monitoring & Control</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Real-time Transaction Monitoring</li>
+                            <li><i class="fas fa-check-circle"></i> Settlement & Payout Management</li>
+                            <li><i class="fas fa-check-circle"></i> Risk & Dispute Resolution</li>
+                            <li><i class="fas fa-check-circle"></i> Compliance Center & Audit Logs</li>
+                        </ul>
+                    </div>
+                    <div class="card info-card">
+                        <h4>Analytics & System Configuration</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Platform Revenue & Performance Analytics</li>
+                            <li><i class="fas fa-check-circle"></i> API Monitoring & Health</li>
+                            <li><i class="fas fa-check-circle"></i> Notification & Feature Control</li>
+                            <li><i class="fas fa-check-circle"></i> Comprehensive System Configuration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Simple, Transparent Pricing for Every Scale</h2>
+                    <p>Choose the plan that best fits your business needs, with no hidden fees and flexible billing options.</p>
+                </div>
+                <div class="pricing-toggle">
+                    <button class="active" id="monthly-toggle">Monthly Billing</button>
+                    <button id="yearly-toggle">Yearly Billing <span style="color: var(--accent); font-weight: 700;">(Save 20%)</span></button>
+                </div>
+                <div class="pricing-grid">
+                    <div class="card pricing-card">
+                        <h3>Starter</h3>
+                        <p class="price" data-monthly="₹299" data-yearly="₹2870">₹299<small>/month</small></p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> UPI & Static QR Payments</li>
+                            <li><i class="fas fa-check-circle"></i> Basic Merchant Dashboard</li>
+                            <li><i class="fas fa-check-circle"></i> Standard Reporting</li>
+                            <li><i class="fas fa-check-circle"></i> Email Support</li>
+                            <li><i class="fas fa-check-circle"></i> Up to 100 Transactions/month</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Start Free Trial</a>
+                    </div>
+                    <div class="card pricing-card recommended">
+                        <h3>Growth</h3>
+                        <p class="price" data-monthly="₹999" data-yearly="₹9590">₹999<small>/month</small></p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> All Starter Features + Dynamic QR</li>
+                            <li><i class="fas fa-check-circle"></i> Payment Links & Subscriptions</li>
+                            <li><i class="fas fa-check-circle"></i> Advanced Analytics & Customer Mgt.</li>
+                            <li><i class="fas fa-check-circle"></i> Priority Email & Chat Support</li>
+                            <li><i class="fas fa-check-circle"></i> Up to 1000 Transactions/month</li>
+                            <li><i class="fas fa-check-circle"></i> Basic API Access & Webhooks</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Start Free Trial</a>
+                    </div>
+                    <div class="card pricing-card">
+                        <h3>Business</h3>
+                        <p class="price" data-monthly="₹2499" data-yearly="₹23990">₹2499<small>/month</small></p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> All Growth Features + Card/Netbanking</li>
+                            <li><i class="fas fa-check-circle"></i> Invoice & Payout Management</li>
+                            <li><i class="fas fa-check-circle"></i> AI Fraud Detection & Business Automation</li>
+                            <li><i class="fas fa-check-circle"></i> Dedicated Account Manager</li>
+                            <li><i class="fas fa-check-circle"></i> Unlimited Transactions</li>
+                            <li><i class="fas fa-check-circle"></i> Full API & SDK Access</li>
+                            <li><i class="fas fa-check-circle"></i> Multi-user Access (5 users) & Mobile App</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Start Free Trial</a>
+                    </div>
+                    <div class="card pricing-card">
+                        <h3>Enterprise</h3>
+                        <p class="price" data-monthly="Custom" data-yearly="Custom">Custom<small>/month</small></p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> All Business Features</li>
+                            <li><i class="fas fa-check-circle"></i> Custom Integrations & SSO</li>
+                            <li><i class="fas fa-check-circle"></i> White-glove Onboarding & 24/7 Phone Support</li>
+                            <li><i class="fas fa-check-circle"></i> Dedicated Infrastructure & Admin Panel Access</li>
+                            <li><i class="fas fa-check-circle"></i> Enhanced Security & Compliance</li>
+                            <li><i class="fas fa-check-circle"></i> Unlimited Users & Advanced AI Features</li>
+                            <li><i class="fas fa-check-circle"></i> SLA & Disaster Recovery</li>
+                        </ul>
+                        <a href="#" class="btn btn-secondary">Contact Sales</a>
+                    </div>
+                </div>
+                <div class="section-heading" style="margin-top: 4rem;">
+                    <a href="#" class="btn btn-primary">Compare All Plans</a>
+                    <a href="#" class="btn btn-secondary">Get Custom Pricing</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integration Section -->
+        <section id="integrations">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Seamless Integrations with Your Favorite Tools</h2>
+                    <p>Connect ChanloPay with your essential business tools to streamline operations and enhance productivity.</p>
+                </div>
+                <div class="integrations-grid">
+                    <div class="integration-item">
+                        <i class="fas fa-calculator"></i>
+                        <p>Accounting</p>
+                    </div>
+                    <div class="integration-item">
+                        <i class="fas fa-users-class"></i>
+                        <p>CRM</p>
+                    </div>
+                    <div class="integration-item">
+                        <i class="fas fa-building"></i>
+                        <p>ERP</p>
+                    </div>
+                    <div class="integration-item">
+                        <i class="fas fa-sms"></i>
+                        <p>SMS Services</p>
+                    </div>
+                    <div class="integration-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>Email Platforms</p>
+                    </div>
+                    <div class="integration-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <p>WhatsApp Automation</p>
+                    </div>
+                    <div class="integration-item">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>E-commerce Platforms</p>
+                    </div>
+                    <div class="integration-item">
+                        <i class="fas fa-plug"></i>
+                        <p>Custom APIs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Alfa Solution -->
+        <section id="about-alfa">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Alfa Solution: Building the Future of Payments</h2>
+                    <p>Alfa Solution is at the forefront of financial technology, creating innovative platforms that simplify digital commerce.</p>
+                </div>
+                <div class="content">
+                    <p>Alfa Solution develops innovative digital solutions designed to simplify payments, automate business operations, and empower merchants with modern financial technology. Our flagship product, ChanloPay, is a testament to our commitment to excellence and innovation in the fintech space.</p>
+                    <div class="mission-vision-values">
+                        <div class="mvv-item">
+                            <h4>Mission</h4>
+                            <p>Enable businesses to accept payments effortlessly, anytime, anywhere, and grow faster.</p>
+                        </div>
+                        <div class="mvv-item">
+                            <h4>Vision</h4>
+                            <p>Become India's most trusted and preferred all-in-one payment technology platform for businesses of all sizes.</p>
+                        </div>
+                        <div class="mvv-item">
+                            <h4>Values</h4>
+                            <p>Innovation, Security, Reliability, Transparency, Customer Success, and Ethical Practices.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Latest Insights from Our Blog</h2>
+                    <p>Stay updated with the latest payment trends, business tips, and fintech news.</p>
+                </div>
+                <div class="blog-grid">
+                    <div class="card blog-post-card">
+                        <img src="https://via.placeholder.com/400x200/0057FF/FFFFFF?text=Payment+Trends" alt="Payment Trends">
+                        <span>Payment Trends</span>
+                        <h4>The Rise of Digital Payments: What Businesses Need to Know</h4>
+                        <p>Explore the shifting landscape of digital transactions and how to adapt your business.</p>
+                    </div>
+                    <div class="card blog-post-card">
+                        <img src="https://via.placeholder.com/400x200/00C2FF/FFFFFF?text=UPI+Insights" alt="UPI Insights">
+                        <span>UPI Insights</span>
+                        <h4>Maximizing Your Business with UPI: A Comprehensive Guide</h4>
+                        <p>Unlock the full potential of UPI for faster, more secure payments.</p>
+                    </div>
+                    <div class="card blog-post-card">
+                        <img src="https://via.placeholder.com/400x200/00D084/FFFFFF?text=Merchant+Tips" alt="Merchant Growth Tips">
+                        <span>Merchant Growth Tips</span>
+                        <h4>5 Strategies for Boosting Sales with ChanloPay Features</h4>
+                        <p>Learn how to leverage ChanloPay's tools to drive business growth.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Trusted by Growing Businesses Across Industries</h2>
+                    <p>Hear what our clients have to say about ChanloPay and Alfa Solution – their success stories are our greatest pride.</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="card testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"ChanloPay has transformed how we accept payments. It's incredibly reliable and the dashboard provides all the insights we need. A game-changer for our e-commerce business!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://via.placeholder.com/50/FF5733/FFFFFF?text=M" alt="Merchant Avatar">
+                            <div class="testimonial-author-info">
+                                <h5>Manoj Kumar</h5>
+                                <span>E-commerce Merchant, Delhi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"As a startup, we needed a payment solution that was easy to integrate and scalable. ChanloPay delivered beyond our expectations, helping us grow without hassle."</p>
+                        <div class="testimonial-author">
+                            <img src="https://via.placeholder.com/50/33FF57/FFFFFF?text=A" alt="Startup Founder Avatar">
+                            <div class="testimonial-author-info">
+                                <h5>Anjali Sharma</h5>
+                                <span>Startup Founder, Bangalore</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"The best part about ChanloPay is the seamless UPI and QR code collection. It's so convenient for our retail store and customers love the options."</p>
+                        <div class="testimonial-author">
+                            <img src="https://via.placeholder.com/50/3357FF/FFFFFF?text=S" alt="Store Owner Avatar">
+                            <div class="testimonial-author-info">
+                                <h5>Sanjay Gupta</h5>
+                                <span>Retail Store Owner, Mumbai</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Find quick answers to the most common questions about ChanloPay and our services.</p>
+                </div>
+                <div class="faq-accordion" id="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How does ChanloPay work?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>ChanloPay provides an all-in-one platform for businesses to accept various digital payments (UPI, Cards, Net Banking, QR codes), manage transactions, automate settlements, and gain financial insights. You can integrate our tools via API or use our ready-made payment links and dashboard.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How fast are settlements?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We offer instant settlements for many payment methods, ensuring quick access to your funds. Standard settlements are processed within T+1 or T+2 business days, depending on the payment instrument and your chosen plan.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Is UPI supported?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, ChanloPay fully supports UPI payments, including dynamic and static QR codes, payment links, and direct UPI collections, making it easy for your customers to pay using any UPI app.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Can I create subscriptions?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Absolutely! Our robust subscription system allows you to create flexible billing plans, manage recurring payments, offer trial periods, and automate invoices, perfect for subscription-based businesses.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Can invoices be automated?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, ChanloPay provides comprehensive invoice management, including automated GST-compliant invoice generation, custom branding, tracking of payment status, and automated payment reminders.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Do you support APIs for integration?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, we offer powerful REST APIs and SDKs with extensive documentation and a sandbox environment, enabling seamless integration with your existing systems and custom applications.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How secure is ChanloPay?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>ChanloPay is built with enterprise-grade security, including end-to-end encryption, multi-factor authentication, fraud detection, role-based access, and adherence to global compliance standards (e.g., PCI DSS).</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Is there a free plan?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>While we don't offer a permanent free plan, we provide free trials for our Starter and Growth plans, allowing you to experience ChanloPay's features firsthand. Our pricing is designed to be transparent and scalable for businesses of all sizes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Get in Touch with Alfa Solution</h2>
+                    <p>Have questions or need assistance? Our team is here to help you succeed.</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-form-container">
+                        <h3>Send Us a Message</h3>
+                        <form class="contact-form" id="contact-form">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="Your Name" required>
+
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="Your Email" required>
+
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX">
+
+                            <label for="company">Company Name</label>
+                            <input type="text" id="company" placeholder="Your Company">
+
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="How can we help you?" rows="5" required></textarea>
+
+                            <div class="contact-form-actions">
+                                <button type="submit" class="btn btn-primary">Send Inquiry</button>
+                                <a href="#" class="btn btn-secondary">Schedule Demo</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Contact Information</h3>
+                        <div class="contact-info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <a href="mailto:support@chanlopay.com">support@chanlopay.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+91 XXXXX XXXXX</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Office Address</h4>
+                                <p>Alfa Solution Headquarters</p>
+                                <p>India</p>
+                            </div>
+                        </div>
+                        <div class="social-icons">
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-col">
+                <a href="#" class="logo">Alfa Solution.<span>ChanloPay</span></a>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">Smart Payments. Faster Business.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="#about-alfa">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Investors</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Product</h5>
+                <ul>
+                    <li><a href="#digital-payments">Payments</a></li>
+                    <li><a href="#merchant-dashboard">Dashboard</a></li>
+                    <li><a href="#subscription-system">Subscriptions</a></li>
+                    <li><a href="#invoice-management">Invoices</a></li>
+                    <li><a href="#financial-analytics">Analytics</a></li>
+                    <li><a href="#mobile-app-features">Mobile App</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Developers</h5>
+                <ul>
+                    <li><a href="#api-platform">API Docs</a></li>
+                    <li><a href="#api-platform">SDKs</a></li>
+                    <li><a href="#api-platform">Sandbox</a></li>
+                    <li><a href="#integrations">Integrations</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="#contact">Contact Support</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#faq">FAQs</a></li>
+                    <li><a href="#">Status Page</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Legal</h5>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#security-center">Security</a></li>
+                    <li><a href="#security-center">Compliance</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Alfa Solution. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const body = document.body;
+
+        function toggleTheme() {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+        }
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // Mobile Nav Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        const navLinks = mobileNav.querySelectorAll('a');
+
+        function toggleMobileNav() {
+            hamburger.classList.toggle('open');
+            mobileNav.classList.toggle('open');
+            document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggleMobileNav);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileNav.classList.contains('open')) {
+                    toggleMobileNav(); // Close mobile nav after clicking a link
+                }
+            });
+        });
+
+        // Dashboard Preview Tabs
+        const dashboardTabsContainer = document.getElementById('dashboard-tabs');
+        const dashboardTabs = dashboardTabsContainer ? dashboardTabsContainer.querySelectorAll('.dashboard-tab') : [];
+        const dashboardImages = document.querySelectorAll('.dashboard-image');
+
+        dashboardTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Deactivate all tabs and images
+                dashboardTabs.forEach(t => t.classList.remove('active'));
+                dashboardImages.forEach(img => img.classList.remove('active'));
+
+                // Activate clicked tab and corresponding image
+                tab.classList.add('active');
+                const targetTab = tab.getAttribute('data-tab');
+                const targetImage = document.querySelector(`.dashboard-image[data-tab-content="${targetTab}"]`);
+                if (targetImage) {
+                    targetImage.classList.add('active');
+                }
+            });
+        });
+
+        // Dashboard Dark Mode Toggle (visual effect only)
+        const dashboardDarkModeToggle = document.getElementById('dashboard-dark-mode-toggle');
+        const dashboardImageContainer = document.querySelector('.dashboard-image-container');
+
+        if (dashboardDarkModeToggle && dashboardImageContainer) {
+            // Initial state for dashboard dark mode (mirror main theme)
+            if (body.getAttribute('data-theme') === 'dark') {
+                dashboardImageContainer.style.filter = 'brightness(0.7) saturate(0.8)'; // Example visual effect
+                dashboardDarkModeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+                dashboardDarkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Toggle Dashboard Theme';
+            }
+
+            dashboardDarkModeToggle.addEventListener('click', () => {
+                if (dashboardImageContainer.style.filter) {
+                    dashboardImageContainer.style.filter = '';
+                    dashboardDarkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Toggle Dashboard Theme';
+                } else {
+                    dashboardImageContainer.style.filter = 'brightness(0.7) saturate(0.8)'; // Example visual effect
+                    dashboardDarkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Toggle Dashboard Theme';
+                }
+            });
+        }
+
+
+        // Pricing Toggle
+        const monthlyToggle = document.getElementById('monthly-toggle');
+        const yearlyToggle = document.getElementById('yearly-toggle');
+        const priceElements = document.querySelectorAll('.pricing-card .price');
+
+        function updatePricing(isMonthly) {
+            priceElements.forEach(priceEl => {
+                const monthlyPrice = priceEl.getAttribute('data-monthly');
+                const yearlyPrice = priceEl.getAttribute('data-yearly');
+                if (isMonthly) {
+                    priceEl.innerHTML = `${monthlyPrice}<small>/month</small>`;
+                } else {
+                    if (yearlyPrice === 'Custom') {
+                        priceEl.innerHTML = `Custom<small>/year</small>`;
+                    } else {
+                        priceEl.innerHTML = `${yearlyPrice}<small>/year</small>`;
+                    }
+                }
+            });
+        }
+
+        if (monthlyToggle && yearlyToggle) {
+            monthlyToggle.addEventListener('click', () => {
+                monthlyToggle.classList.add('active');
+                yearlyToggle.classList.remove('active');
+                updatePricing(true);
+            });
+
+            yearlyToggle.addEventListener('click', () => {
+                yearlyToggle.classList.add('active');
+                monthlyToggle.classList.remove('active');
+                updatePricing(false);
+            });
+
+            // Initialize pricing to monthly on load
+            updatePricing(true);
+        }
+
+
+        // Simple Contact Form Validation (in-memory)
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent actual form submission
+
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                if (!name || !email || !message) {
+                    alert('Please fill in all required fields (Name, Email, Message).');
+                    return;
+                }
+
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                alert('Thank you for your inquiry! We will get back to you shortly.');
+                contactForm.reset();
+            });
+        }
+
+        // FAQ Accordion
+        const faqAccordion = document.getElementById('faq-accordion');
+        if (faqAccordion) {
+            faqAccordion.querySelectorAll('.faq-question').forEach(button => {
+                button.addEventListener('click', () => {
+                    const answer = button.nextElementSibling;
+                    const isActive = button.classList.contains('active');
+
+                    // Close all other open answers
+                    faqAccordion.querySelectorAll('.faq-question').forEach(otherButton => {
+                        if (otherButton !== button && otherButton.classList.contains('active')) {
+                            otherButton.classList.remove('active');
+                            otherButton.nextElementSibling.classList.remove('open');
+                            otherButton.nextElementSibling.style.maxHeight = '0';
+                        }
+                    });
+
+                    // Toggle current answer
+                    button.classList.toggle('active');
+                    answer.classList.toggle('open');
+                    if (answer.classList.contains('open')) {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    } else {
+                        answer.style.maxHeight = '0';
+                    }
+                });
+            });
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    // Close mobile nav if open
+                    if (mobileNav.classList.contains('open')) {
+                        toggleMobileNav();
+                    }
+
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
